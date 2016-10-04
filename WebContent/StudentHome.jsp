@@ -10,26 +10,42 @@
 <title>Student | Home</title>
 </head>
 <body>
-<center>
-	<% model.Gduser u = (model.Gduser) session.getAttribute("User");%>
-	<h2>Welcome  Student, <%= u.getUsername()%></h2>
-	
-<form action="StudentServlet" method="post">
-   		<input type="submit" value="Update" id="submit" />	
-   		<table class="table table-bordered table-striped table-hover">
-    <thead>
-    <tr>
-    	<th>UserId</th>
-    	<th>Assignment</th><div></div>
-    	<th>Assignment Type</th>
-    	<th>Grade</th>
-    	<th>Subject</th>
-    	</tr>
-    </thead>
-    <tbody>
-    </tbody>
-    </table>
-</form>
-</center>
+	<center>
+		<%
+			model.Gduser u = (model.Gduser) session.getAttribute("User");
+		%>
+		<h2>
+			Welcome Student,
+			<%=u.getUsername()%></h2>
+
+		<form>
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th>UserId</th>
+						<th>Assignment</th>
+						<div></div>
+						<th>Assignment Type</th>
+						<th>Grade</th>
+						<th>Subject</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<c:forEach var="record" items="${records}">
+						<tr>
+							<td><c:out value="${record.userid}" /></td>
+							<td><c:out value="${record.assignment}" /></td>
+							<td><c:out value="${record.grade}" /></td>
+							<td><c:out value="${record.subject}" /></td>
+						</tr>
+					</c:forEach>
+
+				</tbody>
+
+			</table>
+
+		</form>
+	</center>
 </body>
 </html>

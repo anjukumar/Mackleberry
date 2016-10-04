@@ -6,19 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script>
-function submit() 
-
-{
-	valid = true;
-	if($('#grade').val().length == 0)
-	{
-	alert("You have successfully added data.");
-	valid = false;
-	}
-	return valid;
-}
-</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ITeacher | Home</title>
 </head>
@@ -32,6 +19,7 @@ function submit()
 <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr>
+    	<th>RecordID</th>
     	<th>UserId</th>
     	<th>Assignment</th><div></div>
     	<th>Assignment Type</th>
@@ -41,17 +29,25 @@ function submit()
     </thead>
     <tbody>
     <c:forEach var="records" items="${records}">
-        <tr><td> <c:out value="${records.userid}"/></td>
-        	<td><c:out value="${records.assignment}"/></td>
-     	   <td><c:out value="${records.grade}"/></td>
-     	     <td><c:out value="${records.subject}"/></td>
-        </tr>
-    </c:forEach>
+							<tr>
+								<td><c:out value="${records.id}" /></td>
+								<td><c:out value="${records.userid}" /></td>
+								<td><c:out value="${records.assignment}" /></td>
+								<td><c:out value="${records.assignmenttype}" /></td>
+								<td><c:out value="${records.grade}" /></td>
+								<td><c:out value="${records.subject}" /></td>
+							</tr>
+						</c:forEach>
     </tbody>
     </table>
-   		<input type="submit" value="Update" id="submit" />	
+  </form>  
+  </div>
+  
+<form action= "EditUserServlet"  method ="post">
+<input type="text" name="recordid" id="recordid" placeholder="Enter the RecordID"  /> 
+<input type="submit" name="submit" value="Update" />
 </form>
-</div>
+
 <form action="AddNew.jsp">
     <button type="submit">Add New</button>
 </form>

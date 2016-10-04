@@ -65,6 +65,8 @@ public class GLoginServlet extends HttpServlet {
 			{
 				System.out.println("Students home");
 				nextURL="/StudentHome.jsp";
+				records = DBGradeUtil.gradebookUser(user.getId());
+				session.setAttribute("records", records);
 			}
 		}
 		else

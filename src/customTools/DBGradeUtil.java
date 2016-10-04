@@ -73,11 +73,11 @@ public class DBGradeUtil {
 		return posts;
 	}
 
-	public static List<Gdgrade> postsofUser(long userid)
+	public static List<Gdgrade> gradebookUser(long userid)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		List<Gdgrade> userposts = null;
-		String qString = "select b from Gdgrade b where b.USERID = = :userid";
+		String qString = "select b from Gdgrade b where b.userid = :userid";
 
 		try{
 			TypedQuery<Gdgrade> query = em.createQuery(qString,Gdgrade.class);
@@ -92,7 +92,33 @@ public class DBGradeUtil {
 		return userposts;    
 	}
 	
-	public static List<Gdgrade> postsofUser(String useremail)
+	public static Gdgrade getGradebookRecord(long recordID) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		Gdgrade grade = em.find(Gdgrade.class, recordID);
+		return grade;
+	}
+	
+//	public static Gdgrade getGradebookRecord (long recordid)
+//	{
+//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//		
+//
+//		
+//		Gdgrade  gd= null;
+//		
+//		try{
+//			gd = query.getSingleResult();
+//		}
+//		catch (Exception e){
+//			e.printStackTrace();
+//		}
+//		finally{
+//			em.close();
+//		}
+//		return gd;    
+//	}
+	
+	public static List<Gdgrade> gradebookUser(String useremail)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		List<Gdgrade> userposts = null;

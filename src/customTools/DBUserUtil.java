@@ -115,7 +115,30 @@ public class DBUserUtil {
 		}
 		return user;
 	}
-
+	
+	public static Gduser getUserByUserID(long userid)
+	{
+	
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		System.out.println("we are here");
+		String qString = "Select u from Gduser u "
+				+ "where u.id = :userid";
+		System.out.println("we are here 22222");
+		TypedQuery<Gduser> q = em.createQuery(qString, Gduser.class);
+		q.setParameter("userid", userid);
+		
+		Gduser user = null;
+		try {
+			user = q.getSingleResult();
+			System.out.println("****run**");
+		}catch (NoResultException e){
+			System.out.println(e);
+		}finally{
+			em.close();
+		}
+		return user;
+	}
+	
 	/**
 	 * Is this user valid? This method has the answer for you.
 	 * Checks the database and counts the number of users with this

@@ -4,13 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+
+	function validate(form) 
+	{
+	    valid =true;
+	   alert($('userid').val());
+	    if ($('#userid').val().length==0)
+		{
+    alert("You may not submit an empty post.");
+    valid = false;
+}
+
+	      return valid;
+	}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
 
 	<h4>Adding grades</h4>
 	
-	<form action="AddNewServlet" method="post" >
+	<form action="AddNewServlet" method="post" onsubmit="return validate(this);" >
 		Student UserID: <br>
 		<input type="text" name="userid" id="userid" placeholder="Student user ID"  />
 		<br>
